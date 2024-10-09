@@ -1,7 +1,13 @@
 
 1. cmd에서 레디스 실행
 docker run -it --rm -p 6379:6379 redis:6.2
+1-1. 도커 cli 보는법
+docker ps -> CONTAINER ID
+docker exec -it {CONTAINER ID} redis-cli
+docker exec -it 87728e991c5c redis-cli
+->monitor
 
+87728e991c5ca7d02921ebf329c66914959112b9400b08f1088052db56c8259f
 2.
 유저 접근 -> spring mvc 통해 접근 -> spring Webflux 접근가능한지 질의
 --> 분기

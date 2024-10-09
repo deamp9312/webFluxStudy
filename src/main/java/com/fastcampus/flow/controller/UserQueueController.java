@@ -1,5 +1,6 @@
 package com.fastcampus.flow.controller;
 
+import com.fastcampus.flow.dto.AllowUserResponse;
 import com.fastcampus.flow.dto.RegisterUserResponse;
 import com.fastcampus.flow.service.UserQueueService;
 import lombok.RequiredArgsConstructor;
@@ -22,5 +23,12 @@ public class UserQueueController {
             @RequestParam(name = "user_id") Long userId) {
         return userQueueService.registerWaitQueue(queue,userId)
                 .map(RegisterUserResponse::new);
+    }
+
+    @PostMapping("/allow")
+    public Mono<AllowUserResponse> allowUser(@RequestParam(name="queue",defaultValue = "default") String queue,
+                                             @RequestParam(name = "count") Long count) {
+        return userQueueService.allowUser(queue, count)
+                .map(allowd -> new AllowUserResponse(count,allowd));
     }
 }
